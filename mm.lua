@@ -19,7 +19,7 @@ local mm = {}
 --   * very little checking is does to ensure the integrity of the
 --     import; be careful; a common pitfall is extra newlines at the
 --     end of a file
-function import(fname)
+function mm.import(fname)
    local file = io.open(fname, "r")
    assert(file, "unable to open file "..fname)
    local header = file:read("*l")
