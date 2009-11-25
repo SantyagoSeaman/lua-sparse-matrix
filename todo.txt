@@ -1,0 +1,12 @@
+what needs to happen before a "0.1" release:
+
+1.  Fix A:det() when A is singular
+3.  Add '%' operator for solving Ax = b  (x = A % b)
+4.  Add eig function for finding eigenvalues and eigenvectors
+5.  Add some way to get inverse
+7.  Add SVD
+8.  Add GMRes
+9.  Add QMR
+10. Put gepp in matrix.lua, integrate functionality with lu
+
+
