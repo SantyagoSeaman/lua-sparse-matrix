@@ -328,6 +328,18 @@ prototype.transpose = transpose
 prototype.t = transpose
 
 
+-- Find the inverse of a matrix
+local function inverse(self)
+   local columns = self.columns
+   local M = matrix.id(columns)
+   for i = 1, columns do
+      M[i] = matrix.gepp(self, M[i])
+   end
+   return M:t()
+end
+prototype.inverse = inverse
+
+
 -- Returns with the value of the largest element in self.
 local function max(self)
    local max = self[1]:max()
@@ -484,6 +496,87 @@ end
 
 
 ----
+---- solvers (direct, for iterative, see isolv.lua)
+----
+
+-- solve Ax = b using gaussian elimination with parital pivoting
+-- returns x, the vector of solutions
+function matrix.gepp(A, b)
+   local rows, columns = A.rows, A.columns
+   -- make a copy of A, otherwise the algorithm will modify the A that was 
+   -- passed in.
+   local A = A + matrix.new(rows, columns)
+   local lambda = vector.new(rows)
+   for i = 1, rows do
+      lambda[i] = i
+   end
+   for k = 1, rows - 1 do
+      local Amax = 0
+      local imax = 0
+      -- find column pivot positions
+      for i = k, rows do
+         local temp = math.abs(A[i][k])
+         if temp > Amax then
+            Amax = temp
+            imax = i
+         end
+      end    
+      -- swap rows of A
+      A[k], A[imax] = A[imax], A[k]
+      -- swap entries in lambda to remember pivots
+      lambda[k], lambda[imax] = lambda[imax], lambda[k]
+      -- calculate the multipliers
+      for i = k + 1, rows do
+         A[i][k] = A[i][k] / A[k][k]
+      end
+      -- update A
+      for j = k + 1, rows do
+         for i = k + 1, rows do
+            A[i][j] = A[i][j] - A[i][k] * A[k][j]
+         end
+      end
+   end
+   -- Permute the right hand side as indicated by lambda
+   local bh = vector.new(rows)
+   for i = 1, rows do 
+      bh[i] = b[lambda[i]];
+   end
+   -- Solve the lower triangular system Lc = b
+   local c = vector.new(rows)
+   for i = 1, rows do
+      local sum = bh[i]
+      for j = 1, i - 1 do
+         sum = sum - A[i][j] * c[j]
+      end
+      c[i] = sum
+   end
+   -- Solve the upper triangular system, Uz = c
+   local z = vector.new(rows);
+   for i = rows, 1, -1 do
+      local sum = c[i]
+      for j = i + 1, rows do
+         sum = sum - A[i][j] * z[j]
+      end
+      if A[i][i] == 0 then
+         error("the algorithm fails")
+      else
+         z[i] = sum / A[i][i]
+      end
+   end
+   -- permute the z vector to get the solution x (this
+   -- step is required if there were any column switches
+   local x = vector.new(rows)
+   for i = 1, rows do
+      x[i] = z[i]
+   end
+   return x
+end
+-- Use the % operator as shorthand for gepp.
+-- i.e. x = A % b to get the solutions of Ax = b
+mt.__mod = matrix.gepp
+
+
+----
 ---- miscellaneous
 ----
 
@@ -497,7 +590,7 @@ function matrix.id(n)
 end
 
 
--- find the determinant of A (seems broken when A is singular -- not good)
+-- find the determinant of A
 function matrix.det(A)
    local rows, columns = A.rows, A.columns
    assert(rows == columns, "Matrix must be square to find the determinant.")
@@ -510,6 +603,20 @@ function matrix.det(A)
       d = -d
    end
    return d
+end
+
+
+-- Create an mxn matrix with each entry a random number between 0 and
+-- 1.
+function matrix.randm(rows, columns)
+   columns = columns or rows
+   local M = matrix.new(rows, columns)
+   for i = 1, rows do
+      for j = 1, columns do
+         M[i][j] = math.random()
+      end
+   end
+   return M
 end
 
 
