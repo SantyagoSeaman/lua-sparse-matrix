@@ -1,9 +1,11 @@
-lock1074.mtx
-Tim Davis
-University of Florida Sparse Matrix Collection
-http://www.cise.ufl.edu/research/sparse/matrices/HB/lock1074.html
-
 b_dyn.mtx
-Leslie Foster
-SJSU Singular Matrix Database
-% http://www.math.sjsu.edu/singular/matrices/html/Grund/b_dyn
+SJSU Singular Matrix Database (Leslie Foster)
+http://www.math.sjsu.edu/singular/matrices/html/Grund/b_dyn
+
+cage7.mxt
+UF Sparse Matrix Collection (Tim Davis)
+http://www.cise.ufl.edu/research/sparse/matrices/vanHeukelum/cage7
+
+lock1074.mtx
+UF Sparse Matrix Collection (Tim Davis)
+http://www.cise.ufl.edu/research/sparse/matrices/HB/lock1074.html
