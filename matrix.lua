@@ -28,13 +28,13 @@
 -- 
 --                   [rows] = vector } }
 
-local vector = require "vector"
 
+require "vector"
 
-local matrix = {}
+matrix = {}
 local mt = {}
-
 local prototype = {type = "matrix"}
+
 
 ----
 ---- constructors
@@ -618,6 +618,3 @@ function matrix.randm(rows, columns)
    end
    return M
 end
-
-
-return matrix

@@ -30,10 +30,11 @@
 --                    nil.  This would not be the case if a given index in
 --                    the table already  had a value before being set to 0.
 
-local vector = {}   
- 
+
+vector = {}
 local mt = {}
 local prototype = {size = 0, type = "vector"}
+
 
 ----
 ---- constructors
@@ -292,6 +293,3 @@ function vector.norm(v, p)
    end
    return res
 end
-
-
-return vector

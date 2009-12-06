@@ -1,28 +1,11 @@
 -- PUMICE Copyright (C) 2009 Lars Rosengreen (-*-coding:iso-safe-unix-*-)
 -- released as free software under the terms of MIT open source license
 
-vector = require "vector"
-matrix = require "matrix"
 
- isolv = {}
+require "vector"
+require "matrix"
 
-
--- solve Au = b using conjugate gradients
-function isolv.cgstep(A, b, steps, u0)
-   local u = u0 or vector.new(b.size)
-   local r = b - A * u
-   local p = r
-   for k = 1, steps do   
-      local w = A * p
-      local lambda = vector.dot(p, r) / vector.dot(p, w)
-      u = u + lambda * p
-      local rnew = r - lambda * w
-      local alpha = vector.dot(rnew, rnew) / vector.dot(r, r)
-      r = rnew
-      p = r + alpha * p
-   end
-   return u
-end
+isolv = {}
 
 
 -- solve Au = b using the conjugate gradient method
@@ -36,7 +19,7 @@ end
 --        elements by default
 --
 -- returns u, the vector of the found solutions
-function isolv.cg(A, b, eps, steps, u0)
+function cg(A, b, eps, steps, u0)
    -- set defaults
    local ers = ers or 0
    local steps = steps or A.rows

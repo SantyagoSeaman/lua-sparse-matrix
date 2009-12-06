@@ -5,11 +5,11 @@
 -- may or may not be suitable for framing
 
 
-
-matrix = require "matrix"
+require "matrix"
 require "gd"
 
 vis = {}
+
 
 -- Create a grayscale image of the elements of a matrix, and save it
 -- as a png to a file. Zero elements are white, the lagest elements are black

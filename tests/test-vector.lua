@@ -1,7 +1,7 @@
 -- PUMICE Copyright (C) 2009 Lars Rosengreen (-*-coding:iso-safe-unix-*-)
 -- released as free software under the terms of MIT open source license
 
-local vector = require "vector"
+require "vector"
 
 local v1 = vector(1, 0, 1)
 local v2 = vector{1, 2, 3, 4, 5}

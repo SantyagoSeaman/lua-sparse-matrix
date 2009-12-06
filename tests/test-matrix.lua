@@ -1,8 +1,8 @@
 -- PUMICE Copyright (C) 2009 Lars Rosengreen (-*-coding:iso-safe-unix-*-)
 -- released as free software under the terms of MIT open source license
 
-local vector = require "vector"
-local matrix = require "matrix"
+require "vector"
+require "matrix"
 
 local M1 = matrix{{1,2},{3,4},{5,6}}
 local M2 = matrix{{1, 0, 3}}

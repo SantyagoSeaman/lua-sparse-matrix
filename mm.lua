@@ -5,9 +5,9 @@
 -- (http://math.nist.gov/MatrixMarket/formats.html)
 
 
-local matrix = require "matrix"
+require "matrix"
 
-local mm = {}
+mm = {}
 
 
 -- Import a matrix in MatrixMarket file format. 
@@ -82,7 +82,3 @@ function mm.export(M, fname)
    end
    file:close()
 end
-
-
-
-return mm
