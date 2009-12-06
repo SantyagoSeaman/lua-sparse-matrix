@@ -293,3 +293,20 @@ function vector.norm(v, p)
    end
    return res
 end
+
+
+-- Create a vector of the given size of all zeros.
+function vector.zeros(size)
+   local v = vector.new(size)
+   return v
+end
+
+
+-- Create a vector of the given size of all ones.
+function vector.ones(size)
+   local v = vector.new(size)
+   for i = 1, size do
+	  v[i] = 1
+   end
+   return v
+end
