@@ -454,6 +454,7 @@ function matrix.cholesky(A)
    return A
 end
 
+
 -- Givens rotation; used for QR factorization.
 -- The way r, c and s is calculated here is not ideal. 
 --
@@ -609,12 +610,29 @@ end
 -- Create an mxn matrix with each entry a random number between 0 and
 -- 1.
 function matrix.randm(rows, columns)
-   columns = columns or rows
+   local columns = columns or rows
    local M = matrix.new(rows, columns)
    for i = 1, rows do
       for j = 1, columns do
          M[i][j] = math.random()
       end
+   end
+   return M
+end
+
+
+-- Create a matrix of the given size with all entries zero.
+function matrix.zeros(rows, columns)
+   local columns = columns or rows
+   return matrix.new(rows, columns)
+end
+
+
+-- Create a matrix of the given size with all entries one.
+function matrix.ones(rows, columns)
+   local M = matrix.new(rows, columns)
+   for i = 1, rows do
+	  M[i] = vector.ones(rows)
    end
    return M
 end
