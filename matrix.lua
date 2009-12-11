@@ -636,3 +636,22 @@ function matrix.ones(rows, columns)
    end
    return M
 end
+
+
+-- Find the first eigenvalue of A using the power method.
+function matrix.eig1(A)
+   local rows, columns = size(A)
+   local x0
+   local x1 = vector.ones(columns)
+   local lambda1, lambda2, delta = 1, 2, 100
+   local tolerance = 1e-15
+   local i = 100
+   while delta > tolerance and i > 0 do
+	  x0, x1 = x1, A * x1
+	  lambda0, lambda1 = lambda1, vector.norm(x1) / vector.norm(x0)
+	  delta = math.abs((lambda1 - lambda0) / lambda0)
+	  i = i - 1
+   end
+   if i == 0 then error("eig1 did not converge on a soluton.") end
+   return lambda1
+end
