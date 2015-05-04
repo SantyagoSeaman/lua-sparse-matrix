@@ -59,7 +59,4 @@ open source license in the hopes that others will find it useful. Pumice's princ
 
 <sup>1</sup> may not be fully sparse
 
-
-![http://lh3.ggpht.com/__mmzRjwYV7E/Sw3JijkrmCI/AAAAAAAADd0/_SgB0fpnnOE/s800/cage10-small.jpg](http://lh3.ggpht.com/__mmzRjwYV7E/Sw3JijkrmCI/AAAAAAAADd0/_SgB0fpnnOE/s800/cage10-small.jpg)
-
 [vanHeukelum\cage10](http://www.cise.ufl.edu/research/sparse/matrices/vanHeukelum/cage10.html) from the [University of Florida Sparse Matrix Collection](http://www.cise.ufl.edu/research/sparse/matrices/), rendered with pumice's `vis.fc` function
