@@ -1,3 +1,8 @@
+# Added #
+  * Vectors multiplication
+  * Cosine similarity between two vectors
+
+# About #
 Pumice is a sparse vector and sparse matrix library for the
 [Lua](http://www.lua.org) programming language. Pumice can efficiently
 store vectors and matrices containing a large number of zero
