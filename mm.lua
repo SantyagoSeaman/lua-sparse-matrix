@@ -54,7 +54,7 @@ function mm.import(fname)
    local M = matrix.new(rows, columns)
    for line in file:lines() do
       tokens = {}
-      for tok in string.gmatch(line, "[%d-\.]+") do
+      for tok in string.gmatch(line, "[%d-\\.]+") do
          tokens[#tokens + 1] = tonumber(tok)
       end
       local row, column, value = tokens[1], tokens[2], tokens[3]

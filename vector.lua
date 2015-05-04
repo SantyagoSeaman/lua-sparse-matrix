@@ -132,7 +132,7 @@ end
 mt.__sub = __sub
 
 
--- multiply vector v by a scalar c
+-- multiply vector v by a scalar or vector c
 local function __mul(c, v)
    local w
    if type(c) == "number" then
@@ -144,7 +144,12 @@ local function __mul(c, v)
       -- handle the case where c is a vector and v is a scalar
       w = __mul(v, c)
    else
-      error("multiplying a vector by that type is not supported")
+      w = 0
+      for i, e in v:elts() do
+         if c[i] then
+            w = w + c[i] * e
+         end 
+      end
    end
    return w
 end
@@ -310,3 +315,9 @@ function vector.ones(size)
    end
    return v
 end
+
+function vector.cosineSimilarity(v1, v2)
+   local cos = (v1 * v2)/(vector.norm(v1) * vector.norm(v2))
+   return cos
+end
+

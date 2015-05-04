@@ -84,3 +84,19 @@ assert(vector.norm(v4) == math.sqrt(50))
 assert(vector.norm(v4, 2) == math.sqrt(50))
 assert(vector.norm(v4, 1) == 12)
 assert(vector.norm(v4, 3) == 252^(1/3))
+
+local vBig1 = vector.new(100000)
+local vBig2 = vector.new(100000)
+vBig1[0] = 5
+vBig1[1000] = 3
+vBig1[100000] = 2
+vBig2[1] = 5
+vBig2[1000] = 3
+vBig2[99999] = 2
+
+assert(vBig1 * vBig2 == 9)
+
+local c1 = vector{1, 2, 3}
+local c2 = vector{3, 2, 1}
+assert(math.abs(vector.cosineSimilarity(c1, c2) - 0.714285) < 0.00001)
+
