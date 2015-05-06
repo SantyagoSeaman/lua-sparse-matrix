@@ -100,3 +100,6 @@ local c1 = vector{1, 2, 3}
 local c2 = vector{3, 2, 1}
 assert(math.abs(vector.cosineSimilarity(c1, c2) - 0.714285) < 0.00001)
 
+local cr1 = vector.new(6, {[1] = 2, [3] = 3, [5] = 5})
+local cr2 = vector.new(6, {[2] = 1, [3] = 2, [4] = 3})
+assert(math.abs(vector.cosineSimilarity(cr1, cr2) - 0.260132) < 0.00001)

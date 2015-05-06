@@ -51,7 +51,7 @@ function vector.new(size, elements)
    x.elements = {}
    setmetatable(x, mt)
    x.size = size
-   for i, e in ipairs(elements) do
+   for i, e in pairs(elements) do
       x[i] = e
    end
    return x
